@@ -1,0 +1,111 @@
+/* contact.module.css */
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 600px;
+  width: 100%;
+  padding: 50px;
+  border-radius: 8px;
+  box-shadow: 0 2px 40px rgba(14, 116, 248, 0.1);
+}
+
+.main {
+  max-width: 600px;
+  width: 100%;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.heroBanner {
+  padding: 1rem;
+  text-align: center;
+  overflow: hidden;
+  background-color: var(--ifm-color-primary-lightest);
+  max-width: 600px;
+  width: 100%;
+}
+
+.title {
+  margin: 20px 0;
+  font-size: 32px;
+}
+
+.description {
+  margin-bottom: 20px;
+  font-size: 18px;
+  text-align: justify;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: var(--color-secondary);
+  color: var(--color-warning);
+}
+
+.label {
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.inputUsername,
+.inputEmail,
+.inputMessage {
+  margin-bottom: 16px;
+  padding: 12px;
+  border: 1px solid #a5dbfa;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: var(--color-info);
+}
+
+.inputUsername:focus,
+.inputEmail:focus,
+.inputMessage:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+.inputMessage {
+  height: 150px;
+  resize: vertical;
+}
+
+.submitButton {
+  padding: 12px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submitButton:hover {
+  background-color: #05468b;
+}
+
+.errorContainer {
+  border: #fa3a0a solid 1px;
+  border-radius: 4px;
+  padding: 20px;
+}
+
+.error {
+  color: red;
+}

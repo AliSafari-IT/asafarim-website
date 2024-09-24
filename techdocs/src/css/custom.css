@@ -1,8 +1,12 @@
 /**
+  asafarim/src/css/custom.css
  * Any CSS included here will be global. The classic template
  * bundles Infima by default. Infima is a CSS framework designed to
  * work well for content-centric websites.
  */
+@import url("https://fonts.googleapis.com/css2?family=Monoton&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kirang+Haerang&family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Acme&family=Architects+Daughter&family=Cabin+Sketch:wght@700&family=Carter+One&family=Chewy&family=Concert+One&family=Fugaz+One&family=Gloria+Hallelujah&family=Kaushan+Script&family=Knewave&family=Londrina+Solid:wght@900&family=Pacifico&family=Permanent+Marker&family=Skranji:wght@700&display=swap");
 
 /* You can override the default Infima variables here. */
 :root {
@@ -15,16 +19,101 @@
   --ifm-color-primary-lightest: #3cad6e;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --color-secondary-dark: #0d3f57;
+  --color-secondary-light: #a2cadf;
+  --color-info-light: #edf8f8;
+  --color-info-dark: #26373f;
+  --color-warning-dark: #f7c1c1;
+  --color-warning-light: #531a1a;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
+[data-theme="dark"] {
+  --ifm-color-primary: #2196f3;
+  --ifm-color-primary-dark: #1e87da;
+  --ifm-color-primary-darker: #1a77c1;
+  --ifm-color-primary-darkest: #1668a8;
+  --ifm-color-primary-light: #2aa0f4;
+  --ifm-color-primary-lighter: #53b3f5;
+  --ifm-color-primary-lightest: #80c7f7;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --color-secondary: var(--color-secondary-dark);
+  --color-warning: var(--color-warning-dark);
+  --color-info: var(--color-info-dark);
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme="light"] {
+  --ifm-color-primary: #2590c2;
+  --ifm-color-primary-dark: #207da4;
+  --ifm-color-primary-darker: #1a6785;
+  --ifm-color-primary-darkest: #145066;
+  --ifm-color-primary-light: #2b9bd4;
+  --ifm-color-primary-lighter: #61b8e1;
+  --ifm-color-primary-lightest: #97d3ed;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --color-secondary: var(--color-secondary-light);
+  --color-warning: var(--color-warning-light);
+  --color-info: var(--color-info-light);
+}
+
+svg {
+  fill: var(--ifm-color-primary-lightest);
+}
+
+header {
+  margin: 0;
+}
+
+header .container {
+  overflow: hidden;
+  padding: 2%;
+}
+
+.cardHomePageFeature {
+  max-width: 600px;
+  padding: 5px;
+  font-family: Arial, sans-serif;
+  text-align: justify;
+}
+
+.quoteHomePageFeature {
+  font-style: italic;
+  font-size: 0.8em;
+  text-align: center;
+}
+
+.authorHomePageFeature {
+  font-size: 0.8em;
+  margin: 0;
+  line-height: .5em;
+  text-align: right;
+}
+
+.text--center {
+  text-align: center;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.hero__title {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.hero__subtitle {
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  text-align: center;
+}
+
+button .button--secondary .button--lg {
+  font-size: 1.2rem;
 }
