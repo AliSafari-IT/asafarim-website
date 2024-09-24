@@ -1,0 +1,39 @@
+/* ./WrapperLayout.css */
+
+.wrapper-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.header {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+}
+
+.header nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 1rem;
+}
+
+.header nav ul li {
+    display: inline;
+}
+
+.content {
+    flex: 1;
+    padding: 2rem;
+}
+
+.footer {
+    position: -webkit-sticky /* Safari */;
+    position: sticky;
+    bottom: 0;
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    
+}

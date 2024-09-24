@@ -1,0 +1,27 @@
+# Existing authors and their information D://Ampps/www/source/projects/asafarim/backend/resources/js/config/authors.yml
+alisafari:
+  name: Ali Safari
+  title: Scientific App Developer and Analyst @ XiTechniX / Unlimit-IT
+  url: https://asafarim.be
+  image_url: https://avatars.githubusercontent.com/u/58768873?s=400&u=04a4cc5767f2aae1e50c860eee4ae56b7d9a9a13&v=4
+  socials:
+    x: asafarim
+    github: https://github.com/AliSafari-IT
+    website: https://asafarim.be
+    stackoverflow: https://stackoverflow.com/users/10703628/asafarim
+    linkedin: https://www.linkedin.com/in/ali-safari-m/
+    facebook: https://www.facebook.com/Asafarim
+    instagram: https://www.instagram.com/asafarim
+    youtube: https://www.youtube.com/@alisafari2172
+
+asafarim:
+  name: Asafarim
+  title: Scientific App Developer and Analyst @ XiTechniX / Unlimit-IT
+  url: https://asafarim.github.io
+  image_url: https://avatars.githubusercontent.com/u/58768873?s=400&u=04a4cc5767f2aae1e50c860eee4ae56b7d9a9a13&v=3
+  socials:
+    x: asafarim
+    github: https://github.com/asafarim
+    website: https://asafarim.github.io
+    stackoverflow: https://stackoverflow.com/users/10703628/asafarim
+    

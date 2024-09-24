@@ -1,0 +1,146 @@
+.md-container {
+    @apply max-w-7xl mx-auto flex space-x-8;
+}
+
+.md-article {
+    @apply flex-1;
+}
+
+.md-pages {
+    @apply max-w-4xl mx-auto;
+
+    h1 {
+        @apply text-4xl font-bold;
+    }
+
+    h2 {
+        @apply text-3xl font-bold;
+    }
+
+    h3 {
+        @apply text-2xl font-bold;
+    }
+
+    h4 {
+        @apply text-xl font-bold;
+    }
+
+    h5 {
+        @apply text-lg font-bold;
+    }
+
+    h6 {
+        @apply text-base font-bold;
+    }
+
+    p {
+        @apply my-4;
+    }
+
+    a {
+        @apply text-blue-500;
+    }
+
+    ul {
+        list-style: disc;
+        padding: 0;
+        margin: 0;
+
+        li {
+            margin: 0.5rem; // equivalent to @apply my-2;
+        
+            p {
+              margin: 0; // equivalent to @apply my-0;
+            }
+          }
+    }
+
+    .tags {
+        @apply text-sm text-gray-500;
+
+        .tag {
+            @apply inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2;
+        }
+    }
+
+    ol {
+        @apply list-decimal list-inside;
+
+        li {
+            @apply my-2;
+        }
+    }
+
+    .tag-page {
+        @apply max-w-4xl mx-auto;
+
+        h1 {
+            @apply text-4xl font-bold;
+        }
+    }
+}
+
+.table-of-contents {
+    @apply w-64 sticky top-20 self-start;
+    background-color: #f4f4f4;
+    font-size: 0.80em;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    .toc-heading {
+        @apply text-blue-400;
+        font-weight: bold;
+        margin-bottom: 10px;
+        font-size: 1.25em;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        
+        &:hover {
+            @apply text-blue-700;
+        }
+    }
+    h2 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    li {
+        margin: 5px 0;
+
+        &.toc-level-1 {
+            font-weight: bold;
+        }
+
+        &.toc-level-2 {
+            padding-left: 15px;
+        }
+
+        &.toc-level-3 {
+            padding-left: 30px;
+        }
+
+        /* Add hover and active styles */
+        a {
+            @apply text-gray-600; /* Default color */
+            transition: color 0.3s, background-color 0.3s;
+
+            &:hover {
+                @apply text-blue-500 bg-gray-200; /* Hover color */
+            }
+        }
+
+        &.active a {
+            @apply text-blue-600 font-bold; /* Active color */
+        }
+    }
+}

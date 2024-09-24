@@ -1,0 +1,102 @@
+# Existing tags and their information D://Ampps/www/source/projects/asafarim/backend/resources/js/config/tags.yml
+facebook:
+  label: Facebook
+  permalink: tags/facebook
+  description: Facebook tag description
+
+hello:
+  label: Hello
+  permalink: tags/hello
+  description: Hello tag description
+
+docusaurus:
+  label: Docusaurus
+  permalink: tags/docusaurus
+  description: Docusaurus tag description
+
+hola:
+  label: Hola
+  permalink: tags/hola
+  description: Hola tag description
+
+static_site_generator:
+  label: Static Site Generator
+  permalink: tags/static_site_generator
+  description: Static Site Generator related content
+
+automation:
+  label: Automation
+  permalink: tags/automation
+  description: Content related to automation
+
+lab_automation:
+  label: Lab Automation
+  permalink: tags/lab_automation
+  description: Lab automation technologies and trends
+
+technology:
+  label: Technology
+  permalink: tags/technology
+  description: Technology-related content
+
+data_management:
+  label: Data Management
+  permalink: tags/data_management
+  description: Content related to data management
+
+future_challenges:
+  label: Future Challenges
+  permalink: tags/future_challenges
+  description: Discussion on future challenges in various fields
+
+xitechnix:
+  label: Xitechnix
+  permalink: tags/xitechnix
+  description: Posts related to Xitechnix
+
+programming:
+  label: Programming
+  permalink: tags/programming
+  description: Programming-related content
+
+styletron_react:
+  label: Styletron React
+  permalink: tags/styletron_react
+  description: Content about Styletron and React integration
+
+react:
+  label: React
+  permalink: tags/react
+  description: React framework-related content
+
+typescript:
+  label: TypeScript
+  permalink: tags/typescript
+  description: TypeScript programming language content
+
+menu:
+  label: Menu
+  permalink: tags/menu
+  description: Content related to menu design and implementation
+
+recursion:
+  label: Recursion
+  permalink: tags/recursion
+  description: Discussions and examples on recursion
+
+tech_journey:
+  label: Tech Journey
+  permalink: tags/tech_journey
+  description: Tech journey content
+
+open_source:
+  label: Open Source
+  permalink: tags/open_source
+  description: Open source content
+
+scientific:
+  label: Scientific
+  permalink: tags/scientific
+  description: Scientific content
+
+# Add new tags here

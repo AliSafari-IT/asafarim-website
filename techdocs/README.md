@@ -1,6 +1,6 @@
 # DevKnowledgeBase
 
-[View on codesandbox](https://vlt4v4-3000.csb.app/)
+[View on codesandbox](https://asafarim.com/)
 
 ## Overview
 

@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".",
+      "target": "esnext",
+      "allowJs": true,
+      "module": "ESNext",
+      "moduleResolution": "node",  // Change this to "node" for better module resolution handling
+      "jsx": "react-jsx",
+      "strict": true,
+      "isolatedModules": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,  // Add this line to skip checking type definitions in node_modules
+      "forceConsistentCasingInFileNames": true,
+      "noEmit": true,
+      "paths": {
+        "@/*": ["./resources/js/*"],
+        "ziggy-js": ["./vendor/tightenco/ziggy"]
+      },
+      "typeRoots": ["resources/types", "node_modules/@types"]
+    },
+    "include": ["resources/js/**/*.ts", "resources/js/**/*.tsx", "resources/js/**/*.d.ts"]
+  }
+  

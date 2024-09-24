@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Monoton&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kirang+Haerang&family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Acme&family=Architects+Daughter&family=Cabin+Sketch:wght@700&family=Carter+One&family=Chewy&family=Concert+One&family=Fugaz+One&family=Gloria+Hallelujah&family=Kaushan+Script&family=Knewave&family=Londrina+Solid:wght@900&family=Pacifico&family=Permanent+Marker&family=Skranji:wght@700&display=swap");
+
+.description-block {
+  margin: .25rem 0;
+
+  a {
+    text-decoration: underline;
+    color: #0084ff;
+  }
+
+  .quote {
+    font-style: italic;
+    font-size: 1.2rem;
+    text-shadow: #0084ff 1px 0 10px;
+    margin: 10px auto;
+    width: 85%;
+    text-align: center;
+  }
+
+  .author {
+    text-align: right;
+    font-weight: bold;
+    margin-right: 30px;
+  }
+}
+
+.home-features {
+  @apply bg-white py-12;
+
+  .features {
+    display: flex;
+    align-items: center;
+    padding: 2rem 0;
+    width: 100%;
+  }
+
+  .featureSvg {
+    height: 200px;
+    width: 200px;
+  }
+
+}
+
+
+.author-info {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ff0000;
+  margin-top: 1rem;
+
+  .author-name {
+    font-size: 1.5rem;
+  }
+
+  .author-title {
+    font-size: 1.2rem;
+  }
+
+
+}
+
+.author-image {
+  width: 50px;
+  height: 50px;
+}
+
+.logo-image {
+  width: 50px;
+  height: 50px;
+  margin-left: 1rem;
+}
+
+.user-status {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ff0000;
+  margin-top: 1rem;
+  text-align: 'right';
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+
+  .user-status-text {
+    font-size: 1.0rem;
+
+  }
+}
+
+@media (max-width: 640px) {
+  /* Hide certain columns on small screens */
+  .hidden-on-small {
+    display: none;
+  }
+}

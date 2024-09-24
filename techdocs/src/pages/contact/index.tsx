@@ -3,31 +3,14 @@ import React, { useEffect, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import styles from "./contact.module.css";
 import Layout from "@theme/Layout";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import api from "@site/api";
-import { IUser } from "@site/types/IUser";
+
 
 export const ContactUs = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const form = useRef();
-  const { siteConfig } = useDocusaurusContext();
-  const [err, setErr] = React.useState(null);
-  const [users, setUsers] = useState<IUser[]>([]);
 
-  useEffect(() => {
-    const getUsers = async () => {
-        try {
-            const response = await api.get("/users");
-            setUsers(response.data);
-        } catch (error) {
-            setErr(error.message || "Unknown error occurred");
-            console.error("Error fetching users data:", error);
-        }
-    };
-    getUsers();
-}, []);
 
   const handleChange = (e: any) => {
     if (e.target.name === "name") {
@@ -37,18 +20,6 @@ export const ContactUs = () => {
     } else if (e.target.name === "message") {
       setMessage(e.target.value);
     }
-  };
-
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    console.log(name, email, message);
-  };
-
-  const handleReset = (e: any) => {
-    e.preventDefault();
-    setName("");
-    setEmail("");
-    setMessage("");
   };
 
   const sendEmail = (e: any) => {
@@ -74,7 +45,6 @@ export const ContactUs = () => {
     <Layout title={"Contact Us"} wrapperClassName={styles.wrapper}>
       <h1 className={styles.title}>Contact Us</h1>
       <main className={styles.main}>
-      {err ? <p className={styles.error}>Failed to load users: {err}</p> : <p>Number of users: {users.length}</p>}
         <form ref={form} onSubmit={sendEmail} className={styles.form}>
           <label className={styles.label}>Name</label>
           <input
