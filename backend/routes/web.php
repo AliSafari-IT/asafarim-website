@@ -77,6 +77,13 @@ Route::get('/contact', function () {
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
 // Projects routes
+Route::middleware(['auth'])->group(function () {
+    Route::get('/projects', [ProjectController::class, 'index']);
+    Route::get('/projects/create', [ProjectController::class, 'create']);
+    Route::post('/projects', [ProjectController::class, 'store']);
+});
+
+
 Route::get('projects', function () {
     return Inertia::render('Projects/Index', [
         'projects' => \App\Models\Project::all(),

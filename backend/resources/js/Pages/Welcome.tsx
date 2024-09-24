@@ -2,8 +2,7 @@ import WrapperLayout from '@/Layouts/WrapperLayout';
 import { usePage } from '@inertiajs/react';
 import HomepageFeatures from './components/HomeFeatures';
 import CookieConsent from "react-cookie-consent";
-import AdminActions from './AdminArea/AdminActions';
-import { adminMenuRoutes } from './AdminArea/data/menuRoutes';
+
 
 export default function Welcome() {
     const { auth } = usePage().props as any;

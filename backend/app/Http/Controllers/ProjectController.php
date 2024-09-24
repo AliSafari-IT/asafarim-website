@@ -8,9 +8,20 @@ use App\Models\Project;
 use App\Models\User;
 use HTMLPurifier;
 use HTMLPurifier_Config;
+use App\Http\Controllers\Controller;
 
 class ProjectController extends Controller
 {
+    public function __construct()
+    {
+        // Apply middleware to all methods except the index method, for example.
+        $this->middleware('auth')->except(['index']);
+
+        // If you want the middleware only on certain methods:
+        // $this->middleware('auth')->only(['create', 'store']);
+    }
+
+
     public function index()
     {
         $projects = Project::all();
@@ -49,7 +60,11 @@ class ProjectController extends Controller
         $config = HTMLPurifier_Config::createDefault();
         $purifier = new HTMLPurifier($config);
         $validatedData['description'] = $purifier->purify($request->description);
-
+        // Check if the user is authenticated
+        if (!auth()->check()) {
+            // Redirect to the previous page if available, or fallback to the index page
+            return redirect()->route('projects.index')->with('error', 'You need to be logged in to perform this action.');
+        }
         // Automatically assign the authenticated user's ID to `createdby`
         $validatedData['createdby'] = auth()->user()->id;
 
@@ -126,7 +141,7 @@ class ProjectController extends Controller
             'project' => $project,
 
         ]);
-    } 
+    }
     /**
      * Remove the specified resource from storage.
      */

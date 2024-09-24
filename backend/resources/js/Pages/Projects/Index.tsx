@@ -64,7 +64,7 @@ export default function Index({ projects }: ProjectsPageProps) {
                 <div className="flex justify-start items-start my-3">
                     <form method="GET" action={route('projects.create')}>
                         <input type="hidden" name="_token" value={csrf_token} />
-                        <AddNewButton type="submit" title="Add new project" />
+                        <AddNewButton type="submit" title="Add new project" disabled={auth.user?.id !== null ? true : false}/>
                     </form>
                 </div>
 

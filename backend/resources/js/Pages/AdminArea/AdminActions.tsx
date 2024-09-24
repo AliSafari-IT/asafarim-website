@@ -37,7 +37,7 @@ const AdminActions: React.FC<AdminActionsProps> = ({ routes }) => {
                 // Change the location and return void
                 window.location.href = route(action.routeName);
             },
-            disabled: auth?.user?.email == 'admin@asafaril.be',  // Disable actions if the user is not authenticated
+            disabled: auth?.user?.email == 'ali@outlook.com',  // Disable actions if the user is not authenticated
             style: action.style,
         })),
     };
