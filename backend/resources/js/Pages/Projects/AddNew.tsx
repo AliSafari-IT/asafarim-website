@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
 import { Head, useForm, usePage } from '@inertiajs/react';
 import WrapperLayout from '@/Layouts/WrapperLayout';
-import { InertiaPageProps, User } from '@/types';
+import { InertiaPageProps, PageProps, User } from '@/types';
 
-interface PageProps extends InertiaPageProps {
-  auth: User;
-  csrf_token: string;
-}
 
 export default function AddNew() {
   const { auth, csrf_token } = usePage<PageProps>().props;
@@ -17,7 +13,7 @@ export default function AddNew() {
     start_date: '',
     end_date: '',
     priority: 0,
-    createdby: auth.id, // Set to current user id
+    createdby: auth.user?.id, // Set to current user id
   });
 
   const handleSubmit = (e: React.FormEvent) => {

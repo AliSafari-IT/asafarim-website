@@ -13,9 +13,6 @@ import { DeveloperBoard24Regular, SignOut24Regular } from '@fluentui/react-icons
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import { ProfileMenu } from "./ProfileMenu";
 import { NavList } from "./NavList";
-import { adminMenuRoutes } from "@/Pages/AdminArea/data/menuRoutes";
-import AdminActions from "@/Pages/AdminArea/AdminActions";
-import isAdmin from "@/Pages/AdminArea/isAdmin";
 
 export function UserNavbar() {
     const auth = usePage().props.auth as any;
@@ -66,13 +63,12 @@ export function UserNavbar() {
                         <form method="POST" action={route('logout')}>
                             {/* CSRF Token for protection */}
                             <input type="hidden" name="_token" value={csrf_token as string} />
-                            <button type="submit" title="Sign out"><SignOut24Regular className="w-6 h-6" /></button>
+                            <button type="submit" title="Sign out">
+                                <SignOut24Regular className="w-6 h-6" />
+                            </button>
                         </form>
 
                         <ProfileMenu />
-                        <div className="hidden ml-24 flex justify-end md:block lg:block " key={auth?.user?.email}  >
-                            {isAdmin(auth) && <AdminActions routes={adminMenuRoutes} />}
-                        </div>
 
                     </div>
 

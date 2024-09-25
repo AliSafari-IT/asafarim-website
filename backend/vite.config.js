@@ -1,31 +1,30 @@
-import { defineConfig } from "vite";
-import laravel from "laravel-vite-plugin";
-import react from "@vitejs/plugin-react";
-import Markdown from "vite-plugin-md";
-import svgr from "vite-plugin-svgr";
-// include: ["**/*.{md,mdx}"],
+import { defineConfig } from 'vite';
+import laravel from 'laravel-vite-plugin';
+import react from '@vitejs/plugin-react';
+
 export default defineConfig({
-    build: {
-        rollupOptions: {
-            input: "resources/js/app.tsx", // Update this to the correct file
-        },
+  base: process.env.NODE_ENV === 'production' ? 'https://auth.asafarim.com/' : '/',
+  plugins: [
+    laravel({
+      input: ['resources/js/app.tsx', 'resources/css/app.css', 'resources/css/classes.scss', 'resources/css/md.scss'],
+      refresh: true,
+    }),
+    react(),
+  ],
+  build: {
+    manifest: true,
+    outDir: 'public/build',
+    emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        entryFileNames: 'assets/[name]-[hash].js',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]',
+      },
     },
-    plugins: [
-        laravel({
-            input: [
-                "resources/js/app.tsx",
-                "resources/css/app.css",
-                "resources/js/Pages/MarkdownPage.tsx",
-                "resources/js/Pages/TagPage.tsx",
-            ],
-            ssr: "resources/js/ssr.jsx",
-            refresh: true,
-        }),
-        react(
-            
-        ),
-        Markdown(), //when using a plugin to process Markdown
-        svgr(),
-    ],
-    // assetsInclude: ['**/*.md'], // when using Markdown files as plain assets
+  },
+  server: {
+    host: 'localhost',  // Bind to localhost instead of 0.0.0.0
+    port: 5173,
+}
 });

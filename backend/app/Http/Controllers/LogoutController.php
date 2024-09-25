@@ -8,6 +8,16 @@ use Inertia\Inertia;
 
 class LogoutController extends Controller
 {
+    // Perform the logout
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
+
     public function perform(Request $request)
     {
         // Log the user out from the application
@@ -30,10 +40,6 @@ class LogoutController extends Controller
         return Inertia::render('Auth/Logout', [
             'auth' => null
         ]);
-    }
-    public function logout(Request $request)
-    {
-        $this->perform($request);
     }
 
     // Redirect to Welcome

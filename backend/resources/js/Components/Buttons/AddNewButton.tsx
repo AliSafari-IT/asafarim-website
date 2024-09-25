@@ -1,7 +1,5 @@
 import { ButtonHTMLAttributes } from 'react';
 import clsx from 'clsx'; // Import clsx for class management
-import { Toast } from '@fluentui/react-components';
-import { Link } from '@fluentui/react';
 
 export function AddNewButton({
     type = 'button',
@@ -13,17 +11,7 @@ export function AddNewButton({
     ...props
 }: ButtonHTMLAttributes<HTMLButtonElement>) {
     const style = { backgroundColor: 'bg-green-500', ...customStyle };
-    if (disabled) {
-        style.backgroundColor = 'bg-gray-300';
-        style.cursor = 'not-allowed';
-        style.opacity = '0.5';
 
-        return (
-            <div className="text-gray-500 text-center">
-                You can't add new. Login to add new. <Link href={route('login')}>Login</Link>
-            </div>
-        );
-    }
     return (
         <button
             {...props}

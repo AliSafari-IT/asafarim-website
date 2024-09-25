@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+
 class Project extends Model
 {
     use HasFactory;
@@ -17,9 +18,22 @@ class Project extends Model
     // public $timestamps = false; // Disable automatic timestamp management
 
     protected $fillable = [
-        'name', 'description', 'status', 'start_date', 'end_date', 'priority', 'createdby'
+        'name',
+        'description',
+        'status',
+        'start_date',
+        'end_date',
+        'priority',
+        'createdby'
     ];
 
+    // Relationship with TechStack
+    public function techStacks()
+    {
+        return $this->belongsToMany(TechStack::class, 'project_tech_stack');
+    }
+
+    // Relationship with User
     public function creator()
     {
         return $this->belongsTo(User::class, 'createdby');

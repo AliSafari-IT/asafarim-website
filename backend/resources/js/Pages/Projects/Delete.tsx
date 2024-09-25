@@ -2,26 +2,17 @@
 import { Head, Link, useForm, usePage } from '@inertiajs/react';
 import WrapperLayout from '@/Layouts/WrapperLayout';
 import { DataBarHorizontalDescending16Filled, Warning48Filled } from '@fluentui/react-icons';
-import { User } from '@/types';
+import { Project, User } from '@/types';
 
-interface ProjectProps {
-    project: {
-        id: number;
-        name: string;
-        description?: string;
-        status: string;
-        start_date?: string;
-        end_date?: string;
-        priority: number;
-        createdby: number;
-    };
+interface DeleteProjectProps {
+    project: Project;
 }
 
-export default function Delete({ project }: ProjectProps) {
+export default function Delete({ project }: DeleteProjectProps) {
     const { csrf_token, auth } = usePage().props;
     const { post, data } = useForm();
-    const handleDeleteProject = (id: number) => {
-        return route('projects.destroy', id);
+    const handleDeleteProject = () => {
+        post(route('projects.destroy', project.id));
     };
     return (
         <WrapperLayout title={`Delete Project: ${project.name}`} >
@@ -29,9 +20,9 @@ export default function Delete({ project }: ProjectProps) {
                 <Head title={"Delete Project"} />
                 <div>
                     <div className="text-sm font-bold my-6">
-                    <div className="text-lg font-bold my-6 flex items-center justify-center justify-items-stretch">
-                        
-                            <Warning48Filled style={{color: 'red'}}/>
+                        <div className="text-lg font-bold my-6 flex items-center justify-center justify-items-stretch">
+
+                            <Warning48Filled style={{ color: 'red' }} />
                             <div>Are you sure you want to delete this project?</div>
                         </div>
                         <div className="text-sm font-bold my-6">
@@ -49,12 +40,13 @@ export default function Delete({ project }: ProjectProps) {
                             onSubmit={(e) => {
                                 e.preventDefault();
                                 if (confirm('Deleting project: ' + project.name + '!')) {
-                                    post(route('projects.destroy', project));
+                                    handleDeleteProject();
                                 }
                             }}
                             method="post"
                             style={{ display: 'inline-block', marginLeft: '5px' }}
                         >
+
                             <input
                                 type="hidden"
                                 name="_method"

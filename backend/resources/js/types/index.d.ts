@@ -1,3 +1,40 @@
+export interface User {
+    id: number;
+    name: string;
+    email: string;
+    email_verified_at?: string | null;
+    avatar?: string;
+}
+
+export interface Project {
+    id: number;
+    name: string;
+    description?: string;
+    status: string;
+    start_date?: string;
+    end_date?: string;
+    priority: number;
+    createdby: number;
+    created_at: string;
+    updated_at: string;
+}
+
+// Centralize your PageProps definition
+export type PageProps<T extends Record<string, unknown> = Record<string, unknown>> = T & {
+    auth: {
+        user: User;
+    };
+    project?: Project; // Make project optional if not required everywhere
+    projects?: Project[]; // In case of projects list
+    flash?: {
+        success?: string;
+        error?: string;
+    };
+    csrf_token?: string;
+};
+
+
+
 // D:\Ampps\www\source\projects\asafarim\backend\resources\js\types\index.d.ts
 import { ForwardRefExoticComponent, SVGProps, RefAttributes } from "react";
 
@@ -14,6 +51,7 @@ export interface User {
 
 export type PageProps<T extends Record<string, unknown> = Record<string, unknown>> = T & {
     user: User | null; 
+    projects?: Project[];
 };
 
 export interface NavListItem {
@@ -108,12 +146,18 @@ export interface Project {
 
 // Add index signature to allow dynamic keys
 export interface InertiaPageProps {
+    auth: {
+        user: User;  // This is the correct structure
+    };
+    projects?: Project[];
+    csrf_token?: string;
     flash?: {
         success?: string;
         error?: string;
     };
     [key: string]: any;  // This allows any additional properties
 }
+
 
 export interface TechStack {
     id: number;

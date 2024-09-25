@@ -1,20 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Head, usePage } from '@inertiajs/react';
 import WrapperLayout from '@/Layouts/WrapperLayout';
-import { InertiaPageProps, Project, User } from '@/types';
+import { InertiaPageProps, PageProps, Project, User } from '@/types';
 
 import { AddNewButton } from '@/Components/Buttons';
 import { projectMenuRoutes } from './data/menuRoutes';
 import DropdownActions from '@/Components/DropdownActions';
 
-interface PageProps extends InertiaPageProps {
-    auth: User;
-    csrf_token: string;
-    flash?: {
-        success?: string;
-        error?: string;
-    };
-}
 
 interface ProjectsPageProps {
     projects: Project[];
@@ -64,7 +56,7 @@ export default function Index({ projects }: ProjectsPageProps) {
                 <div className="flex justify-start items-start my-3">
                     <form method="GET" action={route('projects.create')}>
                         <input type="hidden" name="_token" value={csrf_token} />
-                        <AddNewButton type="submit" title="Add new project" disabled={auth.user?.id !== null ? true : false}/>
+                        <AddNewButton type="submit" title="Add new project" />
                     </form>
                 </div>
 

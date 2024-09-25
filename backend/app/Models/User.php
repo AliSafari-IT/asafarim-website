@@ -6,9 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-use Spatie\Permission\Traits\HasRoles;
-use Spatie\Permission\Traits\HasPermissions;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 
 class User extends Authenticatable
@@ -24,7 +22,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'username',
     ];
 
     /**
@@ -49,39 +46,13 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-
-    /**
-     * The attributes that should be mutated to dates.
+       /**
+     * Define the many-to-many relationship between User and Role.
      *
-     * @var array
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    protected $dates = [
-        'created_at',
-        'updated_at',
-        'deleted_at',
-    ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-
-    /**
-     * The roles that belong to the user.
-     */
-    public function roles()
+    public function roles(): BelongsToMany
     {
-        return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');
+        return $this->belongsToMany(Role::class);
     }
-
-    //getRoleNames
-    public function permissions()
-    {
-        return $this->belongsToMany(Permission::class, 'permission_user', 'user_id', 'permission_id');
-    }
-    //getPermissions
 }

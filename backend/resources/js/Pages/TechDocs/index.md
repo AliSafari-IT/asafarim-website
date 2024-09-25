@@ -10,8 +10,6 @@ showLastUpdateTime: true
 
 ## Introduction to Technical Documentation for Programming
 
-[Apps-Technical Documentation](/apps/techdocs)
-
 Technical documentation is a crucial component in the world of software development, serving as a bridge between complex codebases and their intended users, whether they are fellow developers, stakeholders, or end-users. In the context of full-stack development, technical documentation covers a wide spectrum, from programming languages to libraries and frameworks. It is a comprehensive guide that facilitates understanding, maintaining, and expanding software applications.
 
 ### 1. **Programming Languages**

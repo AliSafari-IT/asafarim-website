@@ -1,15 +1,24 @@
+import { Head, usePage } from '@inertiajs/react';
+import { PageProps } from '@/types';
 import WrapperLayout from '@/Layouts/WrapperLayout';
-import { usePage } from '@inertiajs/react';
 import HomepageFeatures from './components/HomeFeatures';
 import CookieConsent from "react-cookie-consent";
 
-
-export default function Welcome() {
+export default function Welcome({ laravelVersion, phpVersion }: PageProps<{ laravelVersion: string, phpVersion: string }>) {
     const { auth } = usePage().props as any;
     console.log("Welcome: auth", auth);
 
+    const handleImageError = () => {
+        document.getElementById('screenshot-container')?.classList.add('!hidden');
+        document.getElementById('docs-card')?.classList.add('!row-span-1');
+        document.getElementById('docs-card-content')?.classList.add('!flex-row');
+        document.getElementById('background')?.classList.add('!hidden');
+    };
+
     return (
         <WrapperLayout title="Welcome">
+            <Head title="Welcome" />
+            
             {auth ? (
                 <div className="py-12">
                     <h1>Welcome {auth?.name}!</h1>
@@ -47,7 +56,7 @@ export default function Welcome() {
             >
                 This website uses cookies to enhance your browsing experience, personalize content, and analyze our traffic. You can accept or decline cookies by clicking the appropriate button.
             </CookieConsent>
+
         </WrapperLayout>
     );
 }
-

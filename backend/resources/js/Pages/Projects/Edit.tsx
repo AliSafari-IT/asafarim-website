@@ -1,31 +1,12 @@
 import React, { useEffect } from 'react';
 import { Head, Link, useForm, usePage } from '@inertiajs/react';
 import WrapperLayout from '@/Layouts/WrapperLayout';
-import { User } from '@/types';
+import { Project, User } from '@/types';
 import { ArrowReplyButton } from '@/Components/Buttons';
-
-interface Project {
-    id: number;
-    name: string;
-    description?: string;
-    status: string;
-    start_date?: string;
-    end_date?: string;
-    priority: number;
-    createdby: number;
-}
+import { PageProps } from '@/types';
 
 interface EditProjectProps {
     project: Project;
-}
-
-interface PageProps {
-    auth: {
-        user: {
-            id: number;
-        };
-    };
-    [key: string]: any; // Allow additional properties
 }
 
 export default function Edit({ project }: EditProjectProps) {

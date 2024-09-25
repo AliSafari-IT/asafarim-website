@@ -5,5 +5,11 @@ php artisan cache:clear
 php artisan view:clear
 php artisan route:clear
 
+# Install dependencies
+yarn install
+
+# Build assets
+yarn build
+
 # Run the development server
-npm run dev
+yarn dev

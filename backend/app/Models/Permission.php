@@ -11,80 +11,54 @@ class Permission extends Model
 
     protected $fillable = ['name'];
 
+    /**
+     * Relationship with roles (many-to-many).
+     */
     public function roles()
     {
         return $this->belongsToMany(Role::class);
     }
 
-    public function hasRole(Role $role)
+    /**
+     * Check if a permission is assigned to a specific role.
+     */
+    public function hasRole(Role $role): bool
     {
         return $this->roles()->where('id', $role->id)->exists();
     }
 
+    /**
+     * Assign a role to the permission.
+     */
     public function giveRoleTo(Role $role)
     {
-        return $this->roles()->save($role);
+        return $this->roles()->attach($role);
     }
 
-    public function revokeRoleTo(Role $role)
+    /**
+     * Revoke a role from the permission.
+     */
+    public function revokeRole(Role $role)
     {
         return $this->roles()->detach($role);
     }
 
-    public function revokePermissionTo(Permission $permission)
+    /**
+     * Check if the permission is assigned to a specific user (through roles).
+     */
+    public function hasUser(User $user): bool
     {
-        return $this->roles()->detach($permission);
+        return $this->roles()->whereHas('users', function ($query) use ($user) {
+            $query->where('id', $user->id);
+        })->exists();
     }
 
-    public function hasPermission(Permission $permission)
-    {
-        return $this->roles()->where('name', $permission->name)->exists();
-    }
-
-    public function givePermissionTo(Permission $permission)
-    {
-        return $this->roles()->save($permission);
-    }
-
-    public function detachPermissionTo(Permission $permission)
-    {
-        return $this->roles()->detach($permission);
-    }
-
-    public function hasPermissionTo($permission)
-    {
-        return $this->roles()->where('name', $permission)->exists();
-    }
-
-    public function givePermissionToRole(Role $role)
-    {
-        return $this->roles()->save($role);
-    }
-
-    public function revokePermissionToRole(Role $role)
-    {
-        return $this->roles()->detach($role);
-    }
-
-    public function hasPermissionToRole(Role $role)
-    {
-        return $this->roles()->where('id', $role->id)->exists();
-    }
-
-    public function hasUser(User $user)
-    {
-        return $this->roles()->where('id', $user->id)->exists();
-    }
-
+    /**
+     * Relationship with users (many-to-many, through roles).
+     */
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'role_user', 'role_id', 'user_id')
+                    ->using(Role::class);
     }
-
-    public function permissions()
-    {
-        return $this->belongsToMany(Permission::class);
-    }
-
-    
 }

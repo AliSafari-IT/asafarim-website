@@ -11,18 +11,18 @@ class Task extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'tasks';
-    protected $fillable = [
-        'id', // primary key, auto-increment, integer
-        'project_id', // foreign key, integer
+    protected $fillable = ['title', 'description', 'status', 'priority', 'assigned_to'];
 
-        'priority', // integer
-        'title', // string
-        'description', // text
-    ];
-    protected $appends = [
-        'created',
-    ];
+    // Optionally, define relationships if needed
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    // Relationship with the assigned user
+    public function assignedUser()
+    {
+        return $this->belongsTo(User::class, 'assigned_to');
+    }
 
     // each task belongs to a single project
     public function project(): BelongsTo

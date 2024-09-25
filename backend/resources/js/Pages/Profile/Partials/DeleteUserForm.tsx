@@ -1,10 +1,11 @@
 import { useRef, useState, FormEventHandler } from 'react';
+import DangerButton from '@/Components/DangerButton';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import Modal from '@/Components/Modal';
+import SecondaryButton from '@/Components/SecondaryButton';
 import TextInput from '@/Components/TextInput';
 import { useForm } from '@inertiajs/react';
-import { DangerButton, SecondaryButton } from '@/Components/Buttons';
 
 export default function DeleteUserForm({ className = '' }: { className?: string }) {
     const [confirmingUserDeletion, setConfirmingUserDeletion] = useState(false);
@@ -17,6 +18,7 @@ export default function DeleteUserForm({ className = '' }: { className?: string 
         processing,
         reset,
         errors,
+        clearErrors,
     } = useForm({
         password: '',
     });
@@ -39,6 +41,7 @@ export default function DeleteUserForm({ className = '' }: { className?: string 
     const closeModal = () => {
         setConfirmingUserDeletion(false);
 
+        clearErrors();
         reset();
     };
 

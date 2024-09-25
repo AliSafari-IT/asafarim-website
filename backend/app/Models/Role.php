@@ -11,61 +11,59 @@ class Role extends Model
 
     protected $fillable = ['name'];
 
+    /**
+     * Relationship with User (many-to-many).
+     */
     public function users()
     {
         return $this->belongsToMany(User::class);
     }
 
+    /**
+     * Relationship with Permission (many-to-many).
+     */
     public function permissions()
     {
         return $this->belongsToMany(Permission::class);
     }
 
-    public function hasPermission(Permission $permission)
+    /**
+     * Check if the role has a specific permission.
+     */
+    public function hasPermission(Permission $permission): bool
     {
         return $this->permissions()->where('id', $permission->id)->exists();
     }
 
+    /**
+     * Grant a permission to the role.
+     */
     public function givePermissionTo(Permission $permission)
     {
-        return $this->permissions()->save($permission);
+        return $this->permissions()->attach($permission);
     }
 
-    public function revokePermissionTo(Permission $permission)
+    /**
+     * Revoke a permission from the role.
+     */
+    public function revokePermission(Permission $permission)
     {
         return $this->permissions()->detach($permission);
     }
 
+    /**
+     * Assign the role to a user.
+     */
     public function giveRoleTo(User $user)
     {
-        return $this->users()->save($user);
+        return $this->users()->attach($user);
     }
 
-    public function revokeRoleTo(User $user)
+    /**
+     * Remove the role from a user.
+     */
+    public function revokeRole(User $user)
     {
         return $this->users()->detach($user);
-    }
-
-    public function hasPermissionTo($permission)
-    {
-        return $this->permissions()->where('name', $permission)->exists();
-    }
-    public function givePermissionToRole(Role $role)
-    {
-        return $this->permissions()->save($role);
-    }
-
-    public function revokePermissionToRole(Role $role)
-    {
-        return $this->permissions()->detach($role);
-    }
-
-    public function hasPermissionToRole(Role $role)
-    {
-        return $this->permissions()->where('id', $role->id)->exists();
-    }
-    public function hasUser(User $user)
-    {
-        return $this->users()->where('id', $user->id)->exists();
     }
 }

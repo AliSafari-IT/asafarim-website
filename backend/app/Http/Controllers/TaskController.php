@@ -3,103 +3,80 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use App\Http\Requests\Task\CreateTaskRequest;
-use App\Http\Requests\Task\ListTasksRequest;
-use App\Http\Requests\Task\ReorderTasksRequest;
-use App\Http\Requests\Task\UpdateTaskRequest;
-use App\Services\ProjectService;
-use App\Services\TaskService;
-use Illuminate\Http\JsonResponse;
+use App\Models\Task;
+use Inertia\Inertia;
 
 class TaskController extends Controller
 {
-    protected ?TaskService $taskService = null;
-
-    public function __construct(TaskService $taskService)
-    {
-        $this->taskService = $taskService;
-    }
-
+    // React ts Inertia Vite
     public function index()
     {
-        $projects = (new ProjectService())->getAll();
-
-        return view('tasks.index', [
-            'projects' => $projects,
+        return Inertia::render('Tasks/Index', [
+            'tasks' => Task::all()
         ]);
     }
 
-    public function list(ListTasksRequest $request): JsonResponse
+    public function create()
     {
-        $tasks = $this->taskService->list($request->get('project_id'));
-
-        return response()->json([
-            'success' => true,
-            'tasks' => $tasks,
-            'message' => "Tasks retrieved successfully.",
-        ]); // 200
+        return Inertia::render('Tasks/Create');
     }
 
-    public function store(CreateTaskRequest $request): JsonResponse
+    public function edit(Task $task)
     {
-        $this->taskService->store($request->all());
-
-        return response()->json([
-            'success' => true,
-            'message' => "Task created successfully.",
-        ], 201);
+        return Inertia::render('Tasks/Edit', [
+            'task' => $task
+        ]);
     }
 
-    public function get(int $id): JsonResponse
+    public function show(Task $task)
     {
-        $task = $this->taskService->getById($id);
-
-        if ($task) {
-            return response()->json([
-                'success' => true,
-                'task' => $task,
-                'message' => "Task retrieved successfully.",
-            ]); // 200
-        } else {
-            return response()->json([
-                'success' => false,
-                'message' => "Task not found!",
-            ], 404);
-        }
+        return Inertia::render('Tasks/Show', [
+            'task' => $task
+        ]);
     }
 
-    public function update(UpdateTaskRequest $request, int $id): JsonResponse
+    public function store(Request $request)
     {
-        $this->taskService->update($id, $request->all());
+        // Associate the task with the current user
+        $request->validate([
+            'title' => 'required',
+            'description' => 'nullable'
+        ]);
 
-        return response()->json([
-            'success' => true,
-            'message' => "Task updated successfully.",
-        ], 201);
+        // Create the task with the authenticated user's ID
+        $task = new Task;
+        $task->title = $request->title;
+        $task->description = $request->description;
+        // task status ['pending', 'in_progress', 'completed']: default 'pending', if not specified
+        $task->status = $request->status ?? 'pending';
+
+        $task->user_id = auth()->id();
+        $task->save();
+
+        return redirect('/tasks');
     }
 
-    public function delete(int $id): JsonResponse
-    {
-        $this->taskService->delete($id);
 
-        return response()->json([
-            'success' => true,
-            'message' => "Task deleted successfully.",
-        ], 201);
+    public function update(Request $request, Task $task)
+    {
+        $request->validate([
+            'title' => 'required',
+            'description' => 'nullable'
+        ]);
+
+        $task->title = $request->title;
+        $task->description = $request->description;
+        $task->status = $request->status ?? 'pending';
+
+        $task->save();
+
+        return redirect('/tasks');
     }
 
-    public function reorder(ReorderTasksRequest $request): JsonResponse
+    public function destroy(Task $task)
     {
-        $this->taskService->reorder(
-            $request->get('project_id'),
-            $request->get('start'),
-            $request->get('end')
-        );
-
-        return response()->json([
-            'success' => true,
-            'message' => "Tasks reordered successfully.",
-        ], 201);
+        $task->delete();
+        return redirect('/tasks');
     }
+
 }

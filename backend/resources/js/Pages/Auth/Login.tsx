@@ -3,19 +3,12 @@ import Checkbox from '@/Components/Checkbox';
 import GuestLayout from '@/Layouts/GuestLayout';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
+import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
-import { Head, Link, useForm, usePage } from '@inertiajs/react';
-import { PrimaryButton } from '@/Components/Buttons';
+import { Head, Link, useForm } from '@inertiajs/react';
+import SecondaryButton from '@/Components/SecondaryButton';
 
 export default function Login({ status, canResetPassword }: { status?: string, canResetPassword: boolean }) {
-       // Check if user is logged in
-       let isLoggedIn = false;
-       const auth = usePage().props.auth;
-       if (auth) {
-           isLoggedIn = true;
-           console.log('Login: User is logged in', auth);
-       }
-       
     const { data, setData, post, processing, errors, reset } = useForm({
         email: '',
         password: '',
@@ -24,7 +17,6 @@ export default function Login({ status, canResetPassword }: { status?: string, c
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
-
         post(route('login'), {
             onFinish: () => reset('password'),
         });
@@ -82,30 +74,30 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                 </div>
 
                 <div className="flex items-center justify-between mt-4">
-
-                    {canResetPassword && (
-                        <Link
-                            href={route('password.request')}
-                            tabIndex={-1}
-
-                            className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        >
-                            Forgot your password?
-                        </Link>
-                    )}
-
-                    <PrimaryButton onClick={submit} className="ml-4" disabled={processing}>Login</PrimaryButton>
-                </div>
-                <div className="flex items-center justify-between mt-4">
-                        <Link
-                            href={'register'}
-                            className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        >
-                            Don't have an account?
-                        </Link>
+                    <div>
+                        {canResetPassword && (
+                            <Link
+                                href={route('password.request')}
+                                className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            >
+                                Forgot your password?
+                            </Link>
+                        )}
                     </div>
 
-                    </form>
-                </GuestLayout>
-                );
+                    <div className="flex items-center">
+                        <PrimaryButton  disabled={processing}>
+                            Log in
+                        </PrimaryButton>
+
+                        <SecondaryButton className="ms-4" >
+                            <Link href={route('register')} className="text-gray-700" >
+                                Register
+                            </Link>
+                        </SecondaryButton>
+                    </div>
+                </div>
+            </form>
+        </GuestLayout>
+    );
 }

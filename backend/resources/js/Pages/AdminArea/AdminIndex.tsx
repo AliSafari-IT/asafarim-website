@@ -17,7 +17,7 @@ interface Props {
 
 const AdminIndex: React.FC<Props> = ({ user, roles, permissions }) => {
     return (
-        <AdminLayout>
+        <AdminLayout header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Admin Page</h2>}>
             <Head title="Admin Page" />
             <h1>Welcome, {user.name}!</h1>
             <p>You are assigned to the following roles: {roles.join(', ')}</p>

@@ -1,30 +1,43 @@
+import PrimaryButton from '@/Components/PrimaryButton';
+import SecondaryButton from '@/Components/SecondaryButton';
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, Link, usePage } from '@inertiajs/react';
-import { User } from '@/types';
-import GuestLayout from '@/Layouts/GuestLayout';
-import Welcome from './Welcome';
-import { useEffect, useState } from 'react';
 
 export default function Dashboard() {
-   const authenticatedUser = usePage().props.auth;
+    const user = usePage().props.auth.user;
     return (
-        !authenticatedUser ?
-            <GuestLayout
-                key={route().current()}
-            >
-                <Head title="Authentication" />
+        <AuthenticatedLayout
+            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Dashboard</h2>}
+        >
+            <Head title="Dashboard" />
 
-                <div className="py-12">
-                    <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                        <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                            <div className="p-6 text-gray-900">You're NOT logged in!</div>
-                        </div>
-                        <div className="p-6 text-gray-900 text-right">
-                            <a href={route('login')}>Login here</a>
+            <div className="py-12">
+                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                    <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                        <h2 className="text-xl font-semibold leading-tight">Hello, {user.name}!</h2>
+                        <p className="mt-1 text-sm text-gray-600">
+                            This is your dashboard. You are logged in!
+                        </p>
+
+                        <div className="m-3 flex-grow justify-around flex justify-items-center">
+                            <Link href={route('tasks.create')}> 
+                            <SecondaryButton>
+                                    Create Tasks
+                                </SecondaryButton>
+                                </Link>
+                            <Link href={route('tasks.index')}>
+                                <SecondaryButton>
+                                    View Tasks
+                                </SecondaryButton>
+                            </Link>
+                            <PrimaryButton>
+                                <Link href={route('profile.edit')}>Edit Profile</Link>
+
+                            </PrimaryButton>
                         </div>
                     </div>
                 </div>
-            </GuestLayout> :
-            <Welcome key={route().current()} />
-
+            </div>
+        </AuthenticatedLayout>
     );
 }

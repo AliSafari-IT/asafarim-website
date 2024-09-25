@@ -1,18 +1,16 @@
-// backend/resources/js/Pages/Auth/Register.tsx
-
 import { FormEventHandler } from 'react';
 import GuestLayout from '@/Layouts/GuestLayout';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
+import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
-import { PrimaryButton } from '@/Components/Buttons';
+import SecondaryButton from '@/Components/SecondaryButton';
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         email: '',
-        username: '',
         password: '',
         password_confirmation: '',
     });
@@ -56,7 +54,7 @@ export default function Register() {
                         name="email"
                         value={data.email}
                         className="mt-1 block w-full"
-                        autoComplete="email"
+                        autoComplete="username"
                         onChange={(e) => setData('email', e.target.value)}
                         required
                     />
@@ -64,22 +62,6 @@ export default function Register() {
                     <InputError message={errors.email} className="mt-2" />
                 </div>
 
-                <div className="mt-4">
-                    <InputLabel htmlFor="username" value="Username" />
-
-                    <TextInput
-                        id="username"
-                        type="text"
-                        name="username"
-                        value={data.username}
-                        className="mt-1 block w-full"
-                        autoComplete="username"
-                        onChange={(e) => setData('username', e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.email} className="mt-2" />
-                </div>
                 <div className="mt-4">
                     <InputLabel htmlFor="password" value="Password" />
 
@@ -114,14 +96,16 @@ export default function Register() {
                     <InputError message={errors.password_confirmation} className="mt-2" />
                 </div>
 
-                <div className="flex items-center justify-end mt-4">
-                    <Link
-                        href={route('login')}
-                        className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >
-                        Already registered?
-                    </Link>
+                <div className="flex justify-around mt-4">
 
+                <SecondaryButton className="ms-4" >
+                            <Link
+                                href={route('login')}
+                                className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            >
+                                Already registered?
+                            </Link>
+                        </SecondaryButton>
                     <PrimaryButton className="ms-4" disabled={processing}>
                         Register
                     </PrimaryButton>
