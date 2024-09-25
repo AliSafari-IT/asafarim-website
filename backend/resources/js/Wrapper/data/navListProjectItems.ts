@@ -22,7 +22,7 @@ export const projects = [
     },
     {
         title: "Resume",
-        href: createPath("resume"),
+        href: createPath("my-resume"),
         description:
             "An interactive space to view and download my professional resume, including detailed information about my skills, experience, and completed projects.",
     },

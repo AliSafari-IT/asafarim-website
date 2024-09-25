@@ -8,6 +8,9 @@
 		},
 		{
 			"path": "./techdocs",
+		},
+		{
+			"path": "./ResumeApp",
 		}
 	],
 	"settings": {}
