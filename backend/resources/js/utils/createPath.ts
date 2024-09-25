@@ -2,7 +2,8 @@
 const isProduction = typeof window !== "undefined" && (window.location.hostname === 'www.asafarim.be' || window.location.hostname === 'asafarim.be' || window.location.hostname === 'www.asafarim.com' || window.location.hostname === 'asafarim.com');
 
 // Define base paths for different environments
-const basePath = isProduction ? "/apps/laravel/public" : "/";
+// const basePath = isProduction ? "/apps/laravel/public" : "/";
+const basePath = "/";
 
 // Normalize the base path to ensure it doesn't end with a '/'
 const normalizedBasePath = basePath.endsWith('/') ? basePath.slice(0, -1) : basePath;
