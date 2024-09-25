@@ -12,8 +12,8 @@ const normalizedBasePath = basePath.endsWith('/') ? basePath.slice(0, -1) : base
  * Helper function to construct a complete asset path.
  * @param relativePath - The relative path to construct.
  * @returns The constructed path.
- * @example createPath("img/AvatarAli.png") -> "/apps/laravel/public/img/AvatarAli.png"
- * @example createPath("/img/AvatarAli.png") -> "/apps/laravel/public/img/AvatarAli.png"
+ * @example createPath("img/AvatarAli.png") -> "/img/AvatarAli.png"
+ * @example createPath("/img/AvatarAli.png") -> "/img/AvatarAli.png"
  */
 export const createPath = (relativePath: string): string => {
     // Ensure the input path starts with '/'
